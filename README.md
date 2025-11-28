@@ -49,7 +49,7 @@ let result = try await stitcher.stitch(from: "/path/to/openapi.yaml")
 let url = URL(string: "https://example.com/api/openapi.yaml")!
 let result = try await stitcher.stitch(from: url)
 
-// From string content
+// From string content (baseURL needed for relative $ref resolution)
 let yaml = """
 openapi: 3.0.3
 info:
@@ -61,6 +61,7 @@ components:
       $ref: ./schemas/user.yaml
 paths: {}
 """
+let baseURL = URL(fileURLWithPath: "/path/to/spec/directory/openapi.yaml")
 let result = try await stitcher.stitch(content: yaml, baseURL: baseURL)
 ```
 
