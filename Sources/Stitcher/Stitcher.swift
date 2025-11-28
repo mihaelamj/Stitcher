@@ -1,6 +1,9 @@
 // Stitcher - Multi-file OpenAPI $ref resolution
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 import Yams
 
 /// Stitches multi-file OpenAPI specs into a single document.
