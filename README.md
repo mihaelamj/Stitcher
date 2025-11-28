@@ -3,8 +3,8 @@
 Swift library that resolves external `$ref` references in multi-file/multi-folder OpenAPI specs and stitches them into a single document.
 
 [![CI](https://github.com/mihaelamj/Stitcher/actions/workflows/ci.yml/badge.svg)](https://github.com/mihaelamj/Stitcher/actions/workflows/ci.yml)
-[![Swift 5.9+](https://img.shields.io/badge/Swift-5.9+-orange.svg)](https://swift.org)
-[![Platforms](https://img.shields.io/badge/Platforms-macOS%20|%20iOS%20|%20Linux-lightgray.svg)](https://swift.org)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fmihaelamj%2FStitcher%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/mihaelamj/Stitcher)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fmihaelamj%2FStitcher%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/mihaelamj/Stitcher)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## Features
@@ -14,7 +14,7 @@ Swift library that resolves external `$ref` references in multi-file/multi-folde
 - Supports JSON pointer syntax (`#/components/schemas/User`)
 - Detects circular references
 - Caches resolved files for performance
-- Works on macOS, iOS, tvOS, watchOS, and Linux
+- Works on macOS, iOS, and Linux
 
 ## Installation
 
