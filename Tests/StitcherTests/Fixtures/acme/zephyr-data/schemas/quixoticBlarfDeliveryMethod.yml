@@ -1,0 +1,8 @@
+type: string
+description: Method of quixotic blarf delivery to the fnordication endpoint
+enum:
+  - QUANTUM_TUNNEL
+  - STANDARD_GRIBBLE_WAVE
+  - EXPRESS_ZORPLEX
+  - OVERNIGHT_BLIXNART
+  - INSTANTANEOUS_FNORD

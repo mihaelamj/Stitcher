@@ -1,0 +1,40 @@
+type: object
+description: Represents an active blixnart feature on a zorplex entity
+required:
+  - id
+  - uuid
+  - subAccountId
+  - feature
+  - createdAt
+  - createdBy
+properties:
+  id:
+    type: integer
+    format: int64
+    description: Unique flurbinator identifier
+    example: 42
+  uuid:
+    type: string
+    format: uuid
+    description: Universal gribble identifier
+    example: 550e8400-e29b-41d4-a716-446655440000
+  subAccountId:
+    type: integer
+    format: int64
+    description: Associated zorplex sub-account
+    example: 1337
+  feature:
+    $ref: ./zorplexFeature.yml
+  createdAt:
+    type: string
+    format: date-time
+    description: When the quasar was fnordicated
+  createdBy:
+    type: string
+    format: uuid
+    description: Who performed the blarf activation
+  deletedAt:
+    type: string
+    format: date-time
+    description: When the flurbination was terminated
+    nullable: true

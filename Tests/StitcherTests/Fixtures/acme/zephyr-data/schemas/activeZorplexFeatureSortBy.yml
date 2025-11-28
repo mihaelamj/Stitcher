@@ -1,0 +1,8 @@
+type: string
+description: Field to sort active zorplex features by
+enum:
+  - id
+  - createdAt
+  - deletedAt
+  - subAccountId
+default: createdAt

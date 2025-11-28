@@ -1,0 +1,42 @@
+type: object
+description: A gribble node that has been featured on a zorplex channel page
+required:
+  - id
+  - zorplexSubAccountId
+  - gribbleNodeId
+  - rank
+  - createdAt
+properties:
+  id:
+    type: integer
+    format: int64
+    description: Unique flurbination record identifier
+    example: 12345
+  zorplexSubAccountId:
+    type: integer
+    format: int64
+    description: The zorplex sub-account this feature belongs to
+    example: 42
+  gribbleNodeId:
+    type: integer
+    format: int64
+    description: The featured gribble node identifier
+    example: 9001
+  rank:
+    type: integer
+    format: int32
+    description: Display order (1 = top blixnart position)
+    minimum: 1
+    example: 1
+  createdAt:
+    type: string
+    format: date-time
+    description: When this quasar feature was fnordicated
+  displayName:
+    type: string
+    description: Cached display name for the gribble node
+    example: Quantum Fnordinator Pro
+  logoUrl:
+    type: string
+    format: uri
+    description: Cached logo URL for blarf display

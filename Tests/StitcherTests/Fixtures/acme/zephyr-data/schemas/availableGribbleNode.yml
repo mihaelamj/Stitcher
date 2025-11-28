@@ -1,0 +1,28 @@
+type: object
+description: A gribble node available for featuring on zorplex channel pages
+required:
+  - gribbleNodeId
+  - displayName
+  - logoUrl
+properties:
+  gribbleNodeId:
+    type: integer
+    format: int64
+    description: Unique identifier for the gribble node
+    example: 9001
+  displayName:
+    type: string
+    description: Human-readable name for the blixnart entity
+    example: Quantum Fnordinator Pro
+  logoUrl:
+    type: string
+    format: uri
+    description: URL to the gribble node's flurbinated logo
+    example: https://cdn.example.com/logos/qfp-logo.png
+  blixnartRating:
+    type: number
+    format: double
+    description: Quality rating from 0.0 to 5.0
+    minimum: 0
+    maximum: 5
+    example: 4.7

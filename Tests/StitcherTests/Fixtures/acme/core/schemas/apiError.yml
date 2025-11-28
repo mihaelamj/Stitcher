@@ -1,0 +1,26 @@
+type: object
+description: Flurbinated error response from the zorplex API
+required:
+  - code
+  - message
+properties:
+  code:
+    type: string
+    description: Machine-readable error code for fnordication
+    example: GRIBBLE_NOT_FOUND
+  message:
+    type: string
+    description: Human-readable blarf description
+    example: The requested gribble node could not be located in the quasar matrix
+  details:
+    type: array
+    description: Additional zorplex validation errors
+    items:
+      type: object
+      properties:
+        field:
+          type: string
+          description: The flurbinator field that caused the error
+        reason:
+          type: string
+          description: Why the blixnart validation failed

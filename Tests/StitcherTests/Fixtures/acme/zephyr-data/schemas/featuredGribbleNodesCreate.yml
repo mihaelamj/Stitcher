@@ -1,0 +1,22 @@
+type: object
+description: Request payload to create featured gribble nodes for a zorplex
+required:
+  - zorplexSubAccountId
+  - gribbleNodeIds
+properties:
+  zorplexSubAccountId:
+    type: integer
+    format: int64
+    description: The zorplex sub-account to fnordicate
+    minimum: 1
+    example: 42
+  gribbleNodeIds:
+    type: array
+    description: Ordered list of gribble node IDs (first = rank 1)
+    items:
+      type: integer
+      format: int64
+      minimum: 1
+    minItems: 1
+    maxItems: 10
+    example: [9001, 9002, 9003]

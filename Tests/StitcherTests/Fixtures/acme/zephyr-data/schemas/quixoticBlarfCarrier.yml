@@ -1,0 +1,33 @@
+type: object
+description: A carrier entity for quixotic blarf distribution
+required:
+  - carrierId
+  - carrierName
+  - blarfDetails
+properties:
+  carrierId:
+    type: integer
+    format: int64
+    description: Unique blarf carrier identifier
+    example: 7777
+  carrierName:
+    type: string
+    description: Name of the quixotic blarf carrier
+    example: Fnord Industries LLC
+  carrierCode:
+    type: string
+    description: Short alphanumeric code for the carrier
+    pattern: '^[A-Z]{2,4}$'
+    example: FNRD
+  blarfDetails:
+    type: array
+    description: List of blarf detail configurations
+    items:
+      $ref: ./quixoticBlarfDetail.yml
+  establishedYear:
+    type: integer
+    format: int32
+    description: Year the carrier began fnordication
+    minimum: 1900
+    maximum: 2100
+    example: 1985

@@ -1,0 +1,5 @@
+description: No zorplex resource matching the provided gribble identifier was found
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/apiError.yml

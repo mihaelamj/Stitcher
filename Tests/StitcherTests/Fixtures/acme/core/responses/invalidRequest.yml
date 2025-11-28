@@ -1,0 +1,7 @@
+description: The flurbination request was invalid or malformed
+content:
+  application/json:
+    schema:
+      type: array
+      items:
+        $ref: ../schemas/apiError.yml

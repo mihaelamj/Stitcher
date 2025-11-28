@@ -1,0 +1,8 @@
+type: string
+description: Available blixnart features for zorplex entities
+enum:
+  - QUANTUM_FLURBINATION
+  - GRIBBLE_ENHANCEMENT
+  - BLARF_OPTIMIZATION
+  - FNORD_ACCELERATION
+  - QUASAR_MATRIX_V2

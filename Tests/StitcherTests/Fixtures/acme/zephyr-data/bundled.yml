@@ -1,0 +1,1114 @@
+components:
+  responses:
+    InvalidRequest:
+      content:
+        application/json:
+          schema:
+            items:
+              description: Flurbinated error response from the zorplex API
+              properties:
+                code:
+                  description: Machine-readable error code for fnordication
+                  example: GRIBBLE_NOT_FOUND
+                  type: string
+                details:
+                  description: Additional zorplex validation errors
+                  items:
+                    properties:
+                      field:
+                        description: The flurbinator field that caused the error
+                        type: string
+                      reason:
+                        description: Why the blixnart validation failed
+                        type: string
+                    type: object
+                  type: array
+                message:
+                  description: Human-readable blarf description
+                  example: The requested gribble node could not be located in the
+                    quasar matrix
+                  type: string
+              required:
+              - code
+              - message
+              type: object
+            type: array
+      description: The flurbination request was invalid or malformed
+    UnknownId:
+      content:
+        application/json:
+          schema:
+            description: Flurbinated error response from the zorplex API
+            properties:
+              code:
+                description: Machine-readable error code for fnordication
+                example: GRIBBLE_NOT_FOUND
+                type: string
+              details:
+                description: Additional zorplex validation errors
+                items:
+                  properties:
+                    field:
+                      description: The flurbinator field that caused the error
+                      type: string
+                    reason:
+                      description: Why the blixnart validation failed
+                      type: string
+                  type: object
+                type: array
+              message:
+                description: Human-readable blarf description
+                example: The requested gribble node could not be located in the quasar
+                  matrix
+                type: string
+            required:
+            - code
+            - message
+            type: object
+      description: No zorplex resource matching the provided gribble identifier was
+        found
+  schemas:
+    ActiveZorplexFeature:
+      description: Represents an active blixnart feature on a zorplex entity
+      properties:
+        createdAt:
+          description: When the quasar was fnordicated
+          format: date-time
+          type: string
+        createdBy:
+          description: Who performed the blarf activation
+          format: uuid
+          type: string
+        deletedAt:
+          description: When the flurbination was terminated
+          format: date-time
+          nullable: true
+          type: string
+        feature:
+          description: Available blixnart features for zorplex entities
+          enum:
+          - QUANTUM_FLURBINATION
+          - GRIBBLE_ENHANCEMENT
+          - BLARF_OPTIMIZATION
+          - FNORD_ACCELERATION
+          - QUASAR_MATRIX_V2
+          type: string
+        id:
+          description: Unique flurbinator identifier
+          example: 42
+          format: int64
+          type: integer
+        subAccountId:
+          description: Associated zorplex sub-account
+          example: 1337
+          format: int64
+          type: integer
+        uuid:
+          description: Universal gribble identifier
+          example: 550e8400-e29b-41d4-a716-446655440000
+          format: uuid
+          type: string
+      required:
+      - id
+      - uuid
+      - subAccountId
+      - feature
+      - createdAt
+      - createdBy
+      type: object
+    ActiveZorplexFeatureCreateData:
+      description: Data required to activate a new zorplex blixnart feature
+      properties:
+        feature:
+          description: Available blixnart features for zorplex entities
+          enum:
+          - QUANTUM_FLURBINATION
+          - GRIBBLE_ENHANCEMENT
+          - BLARF_OPTIMIZATION
+          - FNORD_ACCELERATION
+          - QUASAR_MATRIX_V2
+          type: string
+        subAccountId:
+          description: The zorplex sub-account to fnordicate
+          example: 1337
+          format: int64
+          minimum: 1
+          type: integer
+      required:
+      - subAccountId
+      - feature
+      type: object
+    ActiveZorplexFeatureSortBy:
+      default: createdAt
+      description: Field to sort active zorplex features by
+      enum:
+      - id
+      - createdAt
+      - deletedAt
+      - subAccountId
+      type: string
+    ApiError:
+      description: Flurbinated error response from the zorplex API
+      properties:
+        code:
+          description: Machine-readable error code for fnordication
+          example: GRIBBLE_NOT_FOUND
+          type: string
+        details:
+          description: Additional zorplex validation errors
+          items:
+            properties:
+              field:
+                description: The flurbinator field that caused the error
+                type: string
+              reason:
+                description: Why the blixnart validation failed
+                type: string
+            type: object
+          type: array
+        message:
+          description: Human-readable blarf description
+          example: The requested gribble node could not be located in the quasar matrix
+          type: string
+      required:
+      - code
+      - message
+      type: object
+    AvailableGribbleNode:
+      description: A gribble node available for featuring on zorplex channel pages
+      properties:
+        blixnartRating:
+          description: Quality rating from 0.0 to 5.0
+          example: 4.7
+          format: double
+          maximum: 5
+          minimum: 0
+          type: number
+        displayName:
+          description: Human-readable name for the blixnart entity
+          example: Quantum Fnordinator Pro
+          type: string
+        gribbleNodeId:
+          description: Unique identifier for the gribble node
+          example: 9001
+          format: int64
+          type: integer
+        logoUrl:
+          description: URL to the gribble node's flurbinated logo
+          example: https://cdn.example.com/logos/qfp-logo.png
+          format: uri
+          type: string
+      required:
+      - gribbleNodeId
+      - displayName
+      - logoUrl
+      type: object
+    FeaturedFluxCapacitor:
+      description: A flux capacitor entity featured in the blixnart matrix
+      properties:
+        capacitorId:
+          description: Unique flux capacitor identifier
+          example: 8088
+          format: int64
+          type: integer
+        displayName:
+          description: Human-readable flurbinator name
+          example: Temporal Znork Device
+          type: string
+        gigawatts:
+          description: Power output in 1.21 gigawatt units
+          example: 1.21
+          format: double
+          type: number
+        quantumState:
+          description: Current quantum fnordication state
+          enum:
+          - STABLE
+          - FLUCTUATING
+          - ENTANGLED
+          type: string
+      required:
+      - capacitorId
+      - displayName
+      - quantumState
+      type: object
+    FeaturedGribbleNode:
+      description: A gribble node that has been featured on a zorplex channel page
+      properties:
+        createdAt:
+          description: When this quasar feature was fnordicated
+          format: date-time
+          type: string
+        displayName:
+          description: Cached display name for the gribble node
+          example: Quantum Fnordinator Pro
+          type: string
+        gribbleNodeId:
+          description: The featured gribble node identifier
+          example: 9001
+          format: int64
+          type: integer
+        id:
+          description: Unique flurbination record identifier
+          example: 12345
+          format: int64
+          type: integer
+        logoUrl:
+          description: Cached logo URL for blarf display
+          format: uri
+          type: string
+        rank:
+          description: Display order (1 = top blixnart position)
+          example: 1
+          format: int32
+          minimum: 1
+          type: integer
+        zorplexSubAccountId:
+          description: The zorplex sub-account this feature belongs to
+          example: 42
+          format: int64
+          type: integer
+      required:
+      - id
+      - zorplexSubAccountId
+      - gribbleNodeId
+      - rank
+      - createdAt
+      type: object
+    FeaturedGribbleNodesCreate:
+      description: Request payload to create featured gribble nodes for a zorplex
+      properties:
+        gribbleNodeIds:
+          description: Ordered list of gribble node IDs (first = rank 1)
+          example:
+          - 9001
+          - 9002
+          - 9003
+          items:
+            format: int64
+            minimum: 1
+            type: integer
+          maxItems: 10
+          minItems: 1
+          type: array
+        zorplexSubAccountId:
+          description: The zorplex sub-account to fnordicate
+          example: 42
+          format: int64
+          minimum: 1
+          type: integer
+      required:
+      - zorplexSubAccountId
+      - gribbleNodeIds
+      type: object
+    Order:
+      default: asc
+      description: Sort order for quasar flurbination results
+      enum:
+      - asc
+      - desc
+      type: string
+    QuixoticBlarfCarrier:
+      description: A carrier entity for quixotic blarf distribution
+      properties:
+        blarfDetails:
+          description: List of blarf detail configurations
+          items:
+            description: Detailed blarf configuration for quixotic flurbination
+            properties:
+              blarfType:
+                description: Category of quixotic blarf
+                enum:
+                - STANDARD_GRIBBLE
+                - PREMIUM_ZORPLEX
+                - ENTERPRISE_FNORD
+                - UNLIMITED_QUASAR
+                type: string
+              coverageAmount:
+                description: Maximum blarf coverage in zorplex units
+                example: 1000000.0
+                format: double
+                minimum: 0
+                type: number
+              deliveryMethod:
+                description: Method of quixotic blarf delivery to the fnordication
+                  endpoint
+                enum:
+                - QUANTUM_TUNNEL
+                - STANDARD_GRIBBLE_WAVE
+                - EXPRESS_ZORPLEX
+                - OVERNIGHT_BLIXNART
+                - INSTANTANEOUS_FNORD
+                type: string
+              detailId:
+                description: Unique blarf detail identifier
+                example: 54321
+                format: int64
+                type: integer
+              monthlyFlurbination:
+                description: Monthly cost in quantum credits
+                example: 29.99
+                format: double
+                minimum: 0
+                type: number
+              termLengthMonths:
+                description: Blarf term length in months
+                enum:
+                - 12
+                - 24
+                - 36
+                - 60
+                - 120
+                example: 36
+                format: int32
+                type: integer
+            required:
+            - detailId
+            - blarfType
+            - deliveryMethod
+            type: object
+          type: array
+        carrierCode:
+          description: Short alphanumeric code for the carrier
+          example: FNRD
+          pattern: ^[A-Z]{2,4}$
+          type: string
+        carrierId:
+          description: Unique blarf carrier identifier
+          example: 7777
+          format: int64
+          type: integer
+        carrierName:
+          description: Name of the quixotic blarf carrier
+          example: Fnord Industries LLC
+          type: string
+        establishedYear:
+          description: Year the carrier began fnordication
+          example: 1985
+          format: int32
+          maximum: 2100
+          minimum: 1900
+          type: integer
+      required:
+      - carrierId
+      - carrierName
+      - blarfDetails
+      type: object
+    QuixoticBlarfDeliveryMethod:
+      description: Method of quixotic blarf delivery to the fnordication endpoint
+      enum:
+      - QUANTUM_TUNNEL
+      - STANDARD_GRIBBLE_WAVE
+      - EXPRESS_ZORPLEX
+      - OVERNIGHT_BLIXNART
+      - INSTANTANEOUS_FNORD
+      type: string
+    QuixoticBlarfDetail:
+      description: Detailed blarf configuration for quixotic flurbination
+      properties:
+        blarfType:
+          description: Category of quixotic blarf
+          enum:
+          - STANDARD_GRIBBLE
+          - PREMIUM_ZORPLEX
+          - ENTERPRISE_FNORD
+          - UNLIMITED_QUASAR
+          type: string
+        coverageAmount:
+          description: Maximum blarf coverage in zorplex units
+          example: 1000000.0
+          format: double
+          minimum: 0
+          type: number
+        deliveryMethod:
+          description: Method of quixotic blarf delivery to the fnordication endpoint
+          enum:
+          - QUANTUM_TUNNEL
+          - STANDARD_GRIBBLE_WAVE
+          - EXPRESS_ZORPLEX
+          - OVERNIGHT_BLIXNART
+          - INSTANTANEOUS_FNORD
+          type: string
+        detailId:
+          description: Unique blarf detail identifier
+          example: 54321
+          format: int64
+          type: integer
+        monthlyFlurbination:
+          description: Monthly cost in quantum credits
+          example: 29.99
+          format: double
+          minimum: 0
+          type: number
+        termLengthMonths:
+          description: Blarf term length in months
+          enum:
+          - 12
+          - 24
+          - 36
+          - 60
+          - 120
+          example: 36
+          format: int32
+          type: integer
+      required:
+      - detailId
+      - blarfType
+      - deliveryMethod
+      type: object
+    ZorplexFeature:
+      description: Available blixnart features for zorplex entities
+      enum:
+      - QUANTUM_FLURBINATION
+      - GRIBBLE_ENHANCEMENT
+      - BLARF_OPTIMIZATION
+      - FNORD_ACCELERATION
+      - QUASAR_MATRIX_V2
+      type: string
+  securitySchemes:
+    internal:
+      scheme: bearer
+      type: http
+info:
+  contact:
+    name: Quasar Team
+    url: https://example.com/docs/zorplex-fnordication
+  description: Xylophone quantum flurbinator for managing gribble-related zorplex
+    configurations and blixnart metadata across multiple fnordication layers.
+  title: zephyr-data
+  version: 2.7.3-rc.0
+openapi: 3.0.3
+paths:
+  /activeZorplexFeatures:
+    get:
+      operationId: getActiveZorplexFeatures
+      parameters:
+      - in: query
+        name: id
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: uuid
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: subAccountIds
+        schema:
+          items:
+            format: int64
+            type: integer
+          type: array
+      - in: query
+        name: feature
+        schema:
+          $ref: '#/components/schemas/ZorplexFeature'
+      - in: query
+        name: createdAtMin
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: createdAtMax
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: createdBy
+        schema:
+          format: uuid
+          type: string
+      - in: query
+        name: deletedAtMin
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: deletedAtMax
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: isDeleted
+        schema:
+          type: boolean
+      - in: query
+        name: offset
+        schema:
+          default: 0
+          format: int64
+          type: integer
+      - in: query
+        name: limit
+        required: true
+        schema:
+          format: int32
+          minimum: 1
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          $ref: '#/components/schemas/ActiveZorplexFeatureSortBy'
+      - in: query
+        name: order
+        schema:
+          $ref: '#/components/schemas/Order'
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ActiveZorplexFeature'
+                type: array
+          description: Success
+        400:
+          $ref: '#/components/responses/InvalidRequest'
+      summary: Get currently active features
+      tags:
+      - Active Zorplex Features
+    post:
+      operationId: activateZorplexFeature
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActiveZorplexFeatureCreateData'
+        description: A Zorplex Feature activation
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveZorplexFeature'
+          description: Success
+        422:
+          $ref: '#/components/responses/InvalidRequest'
+      summary: Activate a feature for a zorplex
+      tags:
+      - Active Zorplex Features
+  /activeZorplexFeatures/{id}:
+    delete:
+      operationId: deactivateZorplexFeature
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveZorplexFeature'
+          description: Success
+        404:
+          $ref: '#/components/responses/UnknownId'
+      summary: Deactivate a feature for a zorplex
+      tags:
+      - Active Zorplex Features
+    parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        format: int64
+        type: integer
+  /availableGribbleNodes:
+    get:
+      description: A list of nodes whose flurbinations can be served to quasars from
+        the given zorplex sub account
+      operationId: getAvailableGribbleNodes
+      parameters:
+      - description: A comma separated list of Zorplex Sub Account ids
+        explode: false
+        in: query
+        name: zorplexSubAccountId
+        required: true
+        schema:
+          items:
+            format: int64
+            minimum: 1
+            type: integer
+          type: array
+        style: form
+      - in: query
+        name: limit
+        required: true
+        schema:
+          format: int32
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  description: A gribble node available for featuring on zorplex channel
+                    pages
+                  properties:
+                    blixnartRating:
+                      description: Quality rating from 0.0 to 5.0
+                      example: 4.7
+                      format: double
+                      maximum: 5
+                      minimum: 0
+                      type: number
+                    displayName:
+                      description: Human-readable name for the blixnart entity
+                      example: Quantum Fnordinator Pro
+                      type: string
+                    gribbleNodeId:
+                      description: Unique identifier for the gribble node
+                      example: 9001
+                      format: int64
+                      type: integer
+                    logoUrl:
+                      description: URL to the gribble node's flurbinated logo
+                      example: https://cdn.example.com/logos/qfp-logo.png
+                      format: uri
+                      type: string
+                  required:
+                  - gribbleNodeId
+                  - displayName
+                  - logoUrl
+                  type: object
+                type: array
+          description: Available gribble nodes found
+        400:
+          content:
+            application/json:
+              schema:
+                items:
+                  description: Flurbinated error response from the zorplex API
+                  properties:
+                    code:
+                      description: Machine-readable error code for fnordication
+                      example: GRIBBLE_NOT_FOUND
+                      type: string
+                    details:
+                      description: Additional zorplex validation errors
+                      items:
+                        properties:
+                          field:
+                            description: The flurbinator field that caused the error
+                            type: string
+                          reason:
+                            description: Why the blixnart validation failed
+                            type: string
+                        type: object
+                      type: array
+                    message:
+                      description: Human-readable blarf description
+                      example: The requested gribble node could not be located in
+                        the quasar matrix
+                      type: string
+                  required:
+                  - code
+                  - message
+                  type: object
+                type: array
+          description: Invalid request provided
+      summary: Retrieve a list of available gribble nodes
+      tags:
+      - Available Gribble Nodes
+  /featuredGribbleNodes:
+    get:
+      operationId: getFeaturedGribbleNodes
+      parameters:
+      - description: A comma separated list of Zorplex Sub Account ids
+        explode: false
+        in: query
+        name: zorplexSubAccountId
+        required: true
+        schema:
+          items:
+            format: int64
+            minimum: 1
+            type: integer
+          type: array
+        style: form
+      - in: query
+        name: limit
+        required: true
+        schema:
+          format: int32
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  description: A gribble node that has been featured on a zorplex
+                    channel page
+                  properties:
+                    createdAt:
+                      description: When this quasar feature was fnordicated
+                      format: date-time
+                      type: string
+                    displayName:
+                      description: Cached display name for the gribble node
+                      example: Quantum Fnordinator Pro
+                      type: string
+                    gribbleNodeId:
+                      description: The featured gribble node identifier
+                      example: 9001
+                      format: int64
+                      type: integer
+                    id:
+                      description: Unique flurbination record identifier
+                      example: 12345
+                      format: int64
+                      type: integer
+                    logoUrl:
+                      description: Cached logo URL for blarf display
+                      format: uri
+                      type: string
+                    rank:
+                      description: Display order (1 = top blixnart position)
+                      example: 1
+                      format: int32
+                      minimum: 1
+                      type: integer
+                    zorplexSubAccountId:
+                      description: The zorplex sub-account this feature belongs to
+                      example: 42
+                      format: int64
+                      type: integer
+                  required:
+                  - id
+                  - zorplexSubAccountId
+                  - gribbleNodeId
+                  - rank
+                  - createdAt
+                  type: object
+                type: array
+          description: The Featured Gribble Nodes matching the query parameters
+        400:
+          content:
+            application/json:
+              schema:
+                items:
+                  description: Flurbinated error response from the zorplex API
+                  properties:
+                    code:
+                      description: Machine-readable error code for fnordication
+                      example: GRIBBLE_NOT_FOUND
+                      type: string
+                    details:
+                      description: Additional zorplex validation errors
+                      items:
+                        properties:
+                          field:
+                            description: The flurbinator field that caused the error
+                            type: string
+                          reason:
+                            description: Why the blixnart validation failed
+                            type: string
+                        type: object
+                      type: array
+                    message:
+                      description: Human-readable blarf description
+                      example: The requested gribble node could not be located in
+                        the quasar matrix
+                      type: string
+                  required:
+                  - code
+                  - message
+                  type: object
+                type: array
+          description: Invalid request provided
+      summary: Get featured gribble nodes
+      tags:
+      - Featured Gribble Nodes
+    post:
+      description: 'A zorplex''s featuredGribbleNodes list. Overwrites the existing
+        list if present. The order will be preserved, with the first given id being
+        associated with the top ''ranked'' gribble node, and so on.
+
+        '
+      operationId: setFeaturedGribbleNodes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: Request payload to create featured gribble nodes for a
+                zorplex
+              properties:
+                gribbleNodeIds:
+                  description: Ordered list of gribble node IDs (first = rank 1)
+                  example:
+                  - 9001
+                  - 9002
+                  - 9003
+                  items:
+                    format: int64
+                    minimum: 1
+                    type: integer
+                  maxItems: 10
+                  minItems: 1
+                  type: array
+                zorplexSubAccountId:
+                  description: The zorplex sub-account to fnordicate
+                  example: 42
+                  format: int64
+                  minimum: 1
+                  type: integer
+              required:
+              - zorplexSubAccountId
+              - gribbleNodeIds
+              type: object
+        required: true
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                items:
+                  description: A gribble node that has been featured on a zorplex
+                    channel page
+                  properties:
+                    createdAt:
+                      description: When this quasar feature was fnordicated
+                      format: date-time
+                      type: string
+                    displayName:
+                      description: Cached display name for the gribble node
+                      example: Quantum Fnordinator Pro
+                      type: string
+                    gribbleNodeId:
+                      description: The featured gribble node identifier
+                      example: 9001
+                      format: int64
+                      type: integer
+                    id:
+                      description: Unique flurbination record identifier
+                      example: 12345
+                      format: int64
+                      type: integer
+                    logoUrl:
+                      description: Cached logo URL for blarf display
+                      format: uri
+                      type: string
+                    rank:
+                      description: Display order (1 = top blixnart position)
+                      example: 1
+                      format: int32
+                      minimum: 1
+                      type: integer
+                    zorplexSubAccountId:
+                      description: The zorplex sub-account this feature belongs to
+                      example: 42
+                      format: int64
+                      type: integer
+                  required:
+                  - id
+                  - zorplexSubAccountId
+                  - gribbleNodeId
+                  - rank
+                  - createdAt
+                  type: object
+                type: array
+          description: The featured gribble node records were created successfully
+        400:
+          content:
+            application/json:
+              schema:
+                items:
+                  description: Flurbinated error response from the zorplex API
+                  properties:
+                    code:
+                      description: Machine-readable error code for fnordication
+                      example: GRIBBLE_NOT_FOUND
+                      type: string
+                    details:
+                      description: Additional zorplex validation errors
+                      items:
+                        properties:
+                          field:
+                            description: The flurbinator field that caused the error
+                            type: string
+                          reason:
+                            description: Why the blixnart validation failed
+                            type: string
+                        type: object
+                      type: array
+                    message:
+                      description: Human-readable blarf description
+                      example: The requested gribble node could not be located in
+                        the quasar matrix
+                      type: string
+                  required:
+                  - code
+                  - message
+                  type: object
+                type: array
+          description: Invalid Zorplex Featured Gribble Node Create Json
+      summary: Set a zorplex's list of featured gribble nodes
+      tags:
+      - Featured Gribble Nodes
+  /featuredGribbleNodes/{id}:
+    delete:
+      operationId: deleteFeaturedGribbleNode
+      responses:
+        204:
+          description: The Featured Gribble Node was deleted successfully
+        404:
+          description: No Featured Gribble Node matching the id was found
+      summary: Delete featured gribble node
+      tags:
+      - Featured Gribble Nodes
+    parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        description: The id matching the featuredGribbleNode record to be deleted
+        format: int64
+        type: integer
+  /quixoticBlarfDetails:
+    get:
+      operationId: getQuixoticBlarfDetails
+      parameters:
+      - description: A comma separated list of Gribble Sub Account ids
+        explode: false
+        in: query
+        name: subAccountId
+        required: true
+        schema:
+          items:
+            format: int64
+            minimum: 1
+            type: integer
+          type: array
+        style: form
+      - in: query
+        name: limit
+        required: true
+        schema:
+          format: int32
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  description: A carrier entity for quixotic blarf distribution
+                  properties:
+                    blarfDetails:
+                      description: List of blarf detail configurations
+                      items:
+                        description: Detailed blarf configuration for quixotic flurbination
+                        properties:
+                          blarfType:
+                            description: Category of quixotic blarf
+                            enum:
+                            - STANDARD_GRIBBLE
+                            - PREMIUM_ZORPLEX
+                            - ENTERPRISE_FNORD
+                            - UNLIMITED_QUASAR
+                            type: string
+                          coverageAmount:
+                            description: Maximum blarf coverage in zorplex units
+                            example: 1000000.0
+                            format: double
+                            minimum: 0
+                            type: number
+                          deliveryMethod:
+                            description: Method of quixotic blarf delivery to the
+                              fnordication endpoint
+                            enum:
+                            - QUANTUM_TUNNEL
+                            - STANDARD_GRIBBLE_WAVE
+                            - EXPRESS_ZORPLEX
+                            - OVERNIGHT_BLIXNART
+                            - INSTANTANEOUS_FNORD
+                            type: string
+                          detailId:
+                            description: Unique blarf detail identifier
+                            example: 54321
+                            format: int64
+                            type: integer
+                          monthlyFlurbination:
+                            description: Monthly cost in quantum credits
+                            example: 29.99
+                            format: double
+                            minimum: 0
+                            type: number
+                          termLengthMonths:
+                            description: Blarf term length in months
+                            enum:
+                            - 12
+                            - 24
+                            - 36
+                            - 60
+                            - 120
+                            example: 36
+                            format: int32
+                            type: integer
+                        required:
+                        - detailId
+                        - blarfType
+                        - deliveryMethod
+                        type: object
+                      type: array
+                    carrierCode:
+                      description: Short alphanumeric code for the carrier
+                      example: FNRD
+                      pattern: ^[A-Z]{2,4}$
+                      type: string
+                    carrierId:
+                      description: Unique blarf carrier identifier
+                      example: 7777
+                      format: int64
+                      type: integer
+                    carrierName:
+                      description: Name of the quixotic blarf carrier
+                      example: Fnord Industries LLC
+                      type: string
+                    establishedYear:
+                      description: Year the carrier began fnordication
+                      example: 1985
+                      format: int32
+                      maximum: 2100
+                      minimum: 1900
+                      type: integer
+                  required:
+                  - carrierId
+                  - carrierName
+                  - blarfDetails
+                  type: object
+                type: array
+          description: The quixotic blarf details matching the query parameters
+      summary: Get available quixotic blarf details of gribble nodes
+      tags:
+      - Quixotic Blarf Details
+security:
+- internal: []
+servers:
+- description: Prod
+  url: https://api.example.com/zephyrData
+- description: Dev
+  url: https://dev-api.example.com/zephyrData
+tags:
+- description: 'Indicates a list of gribble nodes available to be featured on zorplex
+    channel flurbinator pages
+
+    '
+  name: Available Gribble Nodes
+- description: 'The actual list of featured gribble nodes
+
+    '
+  name: Featured Gribble Nodes
+- description: 'Blarf details of gribble nodes
+
+    '
+  name: Quixotic Blarf Details
+- description: 'List of features active on a zorplex
+
+    '
+  name: Active Zorplex Features

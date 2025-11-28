@@ -1,0 +1,14 @@
+type: object
+description: Data required to activate a new zorplex blixnart feature
+required:
+  - subAccountId
+  - feature
+properties:
+  subAccountId:
+    type: integer
+    format: int64
+    description: The zorplex sub-account to fnordicate
+    minimum: 1
+    example: 1337
+  feature:
+    $ref: ./zorplexFeature.yml

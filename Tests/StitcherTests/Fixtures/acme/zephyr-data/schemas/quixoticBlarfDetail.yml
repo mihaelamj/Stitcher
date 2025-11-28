@@ -1,0 +1,40 @@
+type: object
+description: Detailed blarf configuration for quixotic flurbination
+required:
+  - detailId
+  - blarfType
+  - deliveryMethod
+properties:
+  detailId:
+    type: integer
+    format: int64
+    description: Unique blarf detail identifier
+    example: 54321
+  blarfType:
+    type: string
+    description: Category of quixotic blarf
+    enum:
+      - STANDARD_GRIBBLE
+      - PREMIUM_ZORPLEX
+      - ENTERPRISE_FNORD
+      - UNLIMITED_QUASAR
+  deliveryMethod:
+    $ref: ./quixoticBlarfDeliveryMethod.yml
+  coverageAmount:
+    type: number
+    format: double
+    description: Maximum blarf coverage in zorplex units
+    minimum: 0
+    example: 1000000.00
+  monthlyFlurbination:
+    type: number
+    format: double
+    description: Monthly cost in quantum credits
+    minimum: 0
+    example: 29.99
+  termLengthMonths:
+    type: integer
+    format: int32
+    description: Blarf term length in months
+    enum: [12, 24, 36, 60, 120]
+    example: 36

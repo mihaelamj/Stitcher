@@ -1,0 +1,28 @@
+type: object
+description: A flux capacitor entity featured in the blixnart matrix
+required:
+  - capacitorId
+  - displayName
+  - quantumState
+properties:
+  capacitorId:
+    type: integer
+    format: int64
+    description: Unique flux capacitor identifier
+    example: 8088
+  displayName:
+    type: string
+    description: Human-readable flurbinator name
+    example: Temporal Znork Device
+  quantumState:
+    type: string
+    enum:
+      - STABLE
+      - FLUCTUATING
+      - ENTANGLED
+    description: Current quantum fnordication state
+  gigawatts:
+    type: number
+    format: double
+    description: Power output in 1.21 gigawatt units
+    example: 1.21

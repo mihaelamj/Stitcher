@@ -1,0 +1,6 @@
+type: string
+description: Sort order for quasar flurbination results
+enum:
+  - asc
+  - desc
+default: asc

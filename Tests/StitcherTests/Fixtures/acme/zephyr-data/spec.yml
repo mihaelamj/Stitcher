@@ -1,0 +1,379 @@
+openapi: 3.0.3
+info:
+  title: zephyr-data
+  description: >-
+    Xylophone quantum flurbinator for managing gribble-related zorplex
+    configurations and blixnart metadata across multiple fnordication layers.
+  version: 2.7.3-rc.0
+  contact:
+    name: Quasar Team
+    url: >-
+      https://example.com/docs/zorplex-fnordication
+servers:
+  - url: 'https://api.example.com/zephyrData'
+    description: Prod
+  - url: 'https://dev-api.example.com/zephyrData'
+    description: Dev
+tags:
+  - name: Available Gribble Nodes
+    description: >
+      Indicates a list of gribble nodes available to be featured on zorplex
+      channel flurbinator pages
+  - name: Featured Gribble Nodes
+    description: |
+      The actual list of featured gribble nodes
+  - name: Quixotic Blarf Details
+    description: |
+      Blarf details of gribble nodes
+  - name: Active Zorplex Features
+    description: |
+      List of features active on a zorplex
+components:
+  securitySchemes:
+    internal:
+      type: http
+      scheme: bearer
+  schemas:
+    ActiveZorplexFeature:
+      $ref: ./schemas/activeZorplexFeature.yml
+    ActiveZorplexFeatureCreateData:
+      $ref: ./schemas/activeZorplexFeatureCreateData.yml
+    ActiveZorplexFeatureSortBy:
+      $ref: ./schemas/activeZorplexFeatureSortBy.yml
+    ApiError:
+      $ref: ../core/schemas/apiError.yml
+    AvailableGribbleNode:
+      $ref: ./schemas/availableGribbleNode.yml
+    FeaturedGribbleNode:
+      $ref: ./schemas/featuredGribbleNode.yml
+    FeaturedGribbleNodesCreate:
+      $ref: ./schemas/featuredGribbleNodesCreate.yml
+    FeaturedFluxCapacitor:
+      $ref: ./schemas/featuredFluxCapacitor.yml
+    QuixoticBlarfCarrier:
+      $ref: ./schemas/quixoticBlarfCarrier.yml
+    QuixoticBlarfDetail:
+      $ref: ./schemas/quixoticBlarfDetail.yml
+    QuixoticBlarfDeliveryMethod:
+      $ref: ./schemas/quixoticBlarfDeliveryMethod.yml
+    ZorplexFeature:
+      $ref: ./schemas/zorplexFeature.yml
+    Order:
+      $ref: ../core/schemas/order.yml
+  responses:
+    InvalidRequest:
+      $ref: ../core/responses/invalidRequest.yml
+    UnknownId:
+      $ref: ../core/responses/unknownId.yml
+security:
+  - internal: []
+paths:
+  /availableGribbleNodes:
+    get:
+      summary: Retrieve a list of available gribble nodes
+      description: >-
+        A list of nodes whose flurbinations can be served to quasars from the given
+        zorplex sub account
+      operationId: getAvailableGribbleNodes
+      tags:
+        - Available Gribble Nodes
+      parameters:
+        - name: zorplexSubAccountId
+          in: query
+          required: true
+          description: A comma separated list of Zorplex Sub Account ids
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+              minimum: 1
+          style: form
+          explode: false
+        - name: limit
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+          style: form
+      responses:
+        '200':
+          description: Available gribble nodes found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./schemas/availableGribbleNode.yml
+        '400':
+          description: Invalid request provided
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../core/schemas/apiError.yml
+  /featuredGribbleNodes:
+    get:
+      summary: Get featured gribble nodes
+      operationId: getFeaturedGribbleNodes
+      tags:
+        - Featured Gribble Nodes
+      parameters:
+        - name: zorplexSubAccountId
+          in: query
+          required: true
+          description: A comma separated list of Zorplex Sub Account ids
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+              minimum: 1
+          style: form
+          explode: false
+        - name: limit
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+          style: form
+      responses:
+        '200':
+          description: The Featured Gribble Nodes matching the query parameters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./schemas/featuredGribbleNode.yml
+        '400':
+          description: Invalid request provided
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../core/schemas/apiError.yml
+    post:
+      summary: Set a zorplex's list of featured gribble nodes
+      description: >
+        A zorplex's featuredGribbleNodes list. Overwrites the existing
+        list if present. The order will be preserved, with the first given id
+        being associated with the top 'ranked' gribble node, and so on.
+      operationId: setFeaturedGribbleNodes
+      tags:
+        - Featured Gribble Nodes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/featuredGribbleNodesCreate.yml
+      responses:
+        '201':
+          description: The featured gribble node records were created successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./schemas/featuredGribbleNode.yml
+        '400':
+          description: Invalid Zorplex Featured Gribble Node Create Json
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ../core/schemas/apiError.yml
+  '/featuredGribbleNodes/{id}':
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+          description: The id matching the featuredGribbleNode record to be deleted
+    delete:
+      summary: Delete featured gribble node
+      operationId: deleteFeaturedGribbleNode
+      tags:
+        - Featured Gribble Nodes
+      responses:
+        '204':
+          description: The Featured Gribble Node was deleted successfully
+        '404':
+          description: No Featured Gribble Node matching the id was found
+  /quixoticBlarfDetails:
+    get:
+      summary: Get available quixotic blarf details of gribble nodes
+      operationId: getQuixoticBlarfDetails
+      tags:
+        - Quixotic Blarf Details
+      parameters:
+        - name: subAccountId
+          in: query
+          required: true
+          description: A comma separated list of Gribble Sub Account ids
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+              minimum: 1
+          style: form
+          explode: false
+        - name: limit
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+          style: form
+      responses:
+        '200':
+          description: The quixotic blarf details matching the query parameters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./schemas/quixoticBlarfCarrier.yml
+  /activeZorplexFeatures:
+    get:
+      summary: Get currently active features
+      operationId: getActiveZorplexFeatures
+      tags:
+        - Active Zorplex Features
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: integer
+            format: int64
+        - name: uuid
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: subAccountIds
+          in: query
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+        - name: feature
+          in: query
+          schema:
+            $ref: '#/components/schemas/ZorplexFeature'
+        - name: createdAtMin
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: createdAtMax
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: createdBy
+          in: query
+          schema:
+            type: string
+            format: uuid
+        - name: deletedAtMin
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: deletedAtMax
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: isDeleted
+          in: query
+          schema:
+            type: boolean
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+        - name: limit
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+        - name: sortBy
+          in: query
+          schema:
+            $ref: '#/components/schemas/ActiveZorplexFeatureSortBy'
+        - name: order
+          in: query
+          schema:
+            $ref: '#/components/schemas/Order'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActiveZorplexFeature'
+        '400':
+          $ref: '#/components/responses/InvalidRequest'
+    post:
+      summary: Activate a feature for a zorplex
+      operationId: activateZorplexFeature
+      tags:
+        - Active Zorplex Features
+      requestBody:
+        description: A Zorplex Feature activation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActiveZorplexFeatureCreateData'
+      responses:
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveZorplexFeature'
+        '422':
+          $ref: '#/components/responses/InvalidRequest'
+  '/activeZorplexFeatures/{id}':
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+    delete:
+      summary: Deactivate a feature for a zorplex
+      operationId: deactivateZorplexFeature
+      tags:
+        - Active Zorplex Features
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveZorplexFeature'
+        '404':
+          $ref: '#/components/responses/UnknownId'
