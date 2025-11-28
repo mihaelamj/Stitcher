@@ -190,7 +190,7 @@ public actor Stitcher {
         if url.isFileURL {
             return try String(contentsOf: url, encoding: .utf8)
         } else {
-            let (data, response) = try await URLSession.shared.data(from: url)
+            let (data, response) = try await fetchData(from: url)
 
             guard let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 200 else {
@@ -202,6 +202,21 @@ public actor Stitcher {
             }
 
             return text
+        }
+    }
+
+    private func fetchData(from url: URL) async throws -> (Data, URLResponse) {
+        try await withCheckedThrowingContinuation { continuation in
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                } else if let data = data, let response = response {
+                    continuation.resume(returning: (data, response))
+                } else {
+                    continuation.resume(throwing: StitcherError.fetchFailed(url))
+                }
+            }
+            task.resume()
         }
     }
 
